@@ -26,8 +26,14 @@
       font-family: "Inter", sans-serif;
     }
 
+    :root {
+      --surface: #edf8ee;
+      --surface-strong: #f4fbf5;
+      --border: rgba(22,163,74,0.15);
+    }
+
     html { scroll-behavior: smooth; }
-    body { background: #f5f5f5; color: #111; }
+    body { background: #eaf8ea; color: #111; }
 
     h1, h2, h3, h4 { font-weight: 700; }
     a { text-decoration: none; color: inherit; }
@@ -291,10 +297,11 @@
       width: min(520px, calc(100% - 40px));
       max-height: calc(100vh - 80px);
       overflow-y: auto;
-      background: #ffffff;
+      background: var(--surface-strong);
+      border: 1px solid rgba(22,163,74,0.15);
       border-radius: 18px;
       padding: 28px 28px 20px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+      box-shadow: 0 24px 60px rgba(22,163,74,0.14);
       position: relative;
     }
 
@@ -565,9 +572,100 @@
       transform: translateY(-3px);
     }
 
+    .hero {
+      animation: heroZoom 18s ease-in-out infinite alternate;
+      background-position: center center;
+      background-size: 110%;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(132,204,22,0.18), transparent 30%),
+                  radial-gradient(circle at bottom right, rgba(22,163,74,0.18), transparent 22%);
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      text-shadow: 0 18px 36px rgba(0,0,0,0.25);
+    }
+
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 140%;
+      height: 140%;
+      transform: translate(-50%, -50%) scale(0.5);
+      background: radial-gradient(circle, rgba(255,255,255,0.28) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      pointer-events: none;
+    }
+
+    .btn-primary:hover::after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .section-kicker {
+      position: relative;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #16a34a;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .section-kicker::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(22,163,74,0.9), rgba(132,204,22,0.9));
+      transform: translateX(-100%);
+      animation: slideIn 1.1s ease forwards;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 50px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #16a34a, #84cc16);
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heroZoom {
+      from { background-size: 108%; }
+      to   { background-size: 112%; }
+    }
+
+    @keyframes slideIn {
+      to { transform: translateX(0); }
     }
 
     /* -------------------- GENERIC SECTIONS -------------------- */
@@ -577,19 +675,6 @@
 
     .section-header {
       margin-bottom: 32px;
-    }
-
-    .section-kicker {
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #16a34a;
-      margin-bottom: 8px;
-    }
-
-    .section-title {
-      font-size: 28px;
-      margin-bottom: 8px;
     }
 
     .section-subtitle {
@@ -608,10 +693,11 @@
     }
 
     .value-card {
-      background: #ffffff;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 22px 22px 20px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 24px rgba(22,163,74,0.08);
       transition: 0.25s ease;
     }
 
@@ -653,10 +739,11 @@
     }
 
     .stat-card {
-      background: #ffffff;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 20px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 24px rgba(22,163,74,0.08);
     }
 
     .stat-label {
@@ -688,10 +775,11 @@
     }
 
     .info-card {
-      background: #ffffff;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 22px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 24px rgba(22,163,74,0.08);
     }
 
     .info-card h3 {
@@ -728,11 +816,12 @@
     .poll,
     .contact-card,
     .circle {
-      background: #ffffff;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 22px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 10px 24px rgba(22,163,74,0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
     .service-card {
@@ -749,10 +838,11 @@
     }
 
     .proof-card {
-      background: #ffffff;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 24px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 24px rgba(22,163,74,0.08);
       min-height: 190px;
     }
 
@@ -804,8 +894,8 @@
     .partner-pill {
       padding: 8px 16px;
       border-radius: 999px;
-      background: #ffffff;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      background: var(--surface);
+      box-shadow: 0 6px 16px rgba(22,163,74,0.08);
       font-size: 13px;
       color: #444;
     }
@@ -819,10 +909,11 @@
     }
 
     .case-card {
-      background: #ffffff;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 22px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 24px rgba(22,163,74,0.08);
     }
 
     .case-label {
@@ -860,10 +951,11 @@
     }
 
     .faq-item {
-      background: #ffffff;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
       padding: 18px 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      box-shadow: 0 8px 20px rgba(22,163,74,0.08);
     }
 
     .faq-item h3 {
@@ -880,10 +972,10 @@
     /* -------------------- POLL INFO -------------------- */
     .poll-info {
       margin-bottom: 40px;
-      background: #ffffff;
+      background: var(--surface);
       padding: 30px;
       border-radius: 14px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      box-shadow: 0 10px 25px rgba(22,163,74,0.08);
     }
 
     .poll-facts {
@@ -919,10 +1011,10 @@
     }
 
     .poll {
-      background: #ffffff;
+      background: var(--surface);
       padding: 24px;
       border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      box-shadow: 0 10px 25px rgba(22,163,74,0.08);
       transition: 0.3s;
       text-align: left;
     }
@@ -1003,7 +1095,7 @@
       background: #ffffff;
       padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 20px rgba(22,163,74,0.08);
       flex: 1 1 520px;
       min-width: 280px;
       width: 100%;
@@ -1022,10 +1114,10 @@
     }
 
     .circle {
-      background: #ffffff;
+      background: var(--surface);
       padding: 18px 20px;
       border-radius: 14px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+      box-shadow: 0 8px 20px rgba(22,163,74,0.08);
       text-align: center;
       min-width: 0;
     }
@@ -1075,10 +1167,10 @@
     }
 
     .contact-card {
-      background: #ffffff;
+      background: var(--surface);
       border-radius: 14px;
       padding: 22px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 24px rgba(22,163,74,0.08);
     }
 
     .contact-card h3 {
@@ -1159,19 +1251,25 @@
       cursor: pointer;
       box-shadow: 0 14px 30px rgba(0,0,0,0.18);
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      animation: float 4s ease-in-out infinite;
       z-index: 1100;
     }
 
     .whatsapp-btn:hover {
       background: #1ebe57;
-      transform: translateY(-3px);
-      box-shadow: 0 18px 36px rgba(0,0,0,0.22);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 42px rgba(0,0,0,0.24);
     }
 
     .whatsapp-btn svg {
       width: 26px;
       height: 26px;
       display: block;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
 
     @media (max-width: 900px) {
@@ -1853,8 +1951,9 @@
             bouwsteen in een datagedreven strategie rondom de energietransitie.
           </p>
           <p class="contact-meta">
-            Stuur een e-mail naar <a href="mailto:601756@edu.rocmn.nl">601756@edu.rocmn.nl</a> of bel
-            <a href="tel:+310612345678">+31 (0) 6 39313535</a> voor een oriënterend gesprek.
+            Stuur een e-mail naar <a href="mailto:601756@edu.rocmn.nl?subject=Contact%20via%20GreenVote&body=Hallo%20Socia%2C%0A%0AIk%20wil%20graag%20contact%20met%20je%20opnemen%20over%20GreenVote.%0A%0AMet%20vriendelijke%20groet%2C">601756@edu.rocmn.nl</a>
+            of stuur een WhatsApp-bericht naar
+            <a href="https://wa.me/31639313535?text=Hallo%20Socia%2C%20ik%20wil%20graag%20contact%20opnemen%20over%20GreenVote." target="_blank" rel="noreferrer">+31 (0) 6 3931 3535</a>.
           </p>
         </div>
         <div class="contact-card">
@@ -1872,8 +1971,8 @@
   <footer>
     <div>
       <h3>Contact</h3>
-      <p>Email: <a href="mailto:601756@edu.rocmn.nl">601756@edu.rocmn.nl</a></p>
-      <p>Tel: <a href="tel:+310639313535">+31 (0) 6 3931 3535</a></p>
+      <p>Email: <a href="mailto:601756@edu.rocmn.nl?subject=Contact%20via%20GreenVote&body=Hallo%20Socia%2C%0A%0AIk%20wil%20graag%20contact%20opnemen%20over%20GreenVote.">601756@edu.rocmn.nl</a></p>
+      <p>WhatsApp: <a href="https://wa.me/31639313535?text=Hallo%20Socia%2C%20ik%20wil%20graag%20contact%20opnemen%20over%20GreenVote." target="_blank" rel="noreferrer">+31 (0) 6 3931 3535</a></p>
       <div class="social-links">
         <i class="fab fa-linkedin"></i>
         <i class="fab fa-facebook"></i>
@@ -1903,7 +2002,7 @@
   </footer>
 
   <!-- WHATSAPP BUTTON -->
-  <button class="whatsapp-btn" aria-label="WhatsApp contact" onclick="window.location.href='https://wa.me/31631698184'">
+  <button class="whatsapp-btn" aria-label="WhatsApp contact" onclick="window.location.href='https://wa.me/31639313535?text=Hallo%20Socia%2C%20ik%20wil%20graag%20contact%20opnemen%20over%20GreenVote.'">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M20.52 3.48A11.86 11.86 0 0012 0C5.37 0 .05 5.32.05 11.94a11.85 11.85 0 001.86 6.24L0 24l5.98-1.56a11.9 11.9 0 006.02 1.52h.01c6.63 0 12-5.34 12-11.94 0-3.2-1.25-6.21-3.47-8.46zM12 21.98h-.01c-1.96 0-3.88-.52-5.62-1.5l-.4-.24-3.55.93.95-3.46-.25-.38A9.98 9.98 0 011.02 11.95C1.02 6.05 5.86 1.2 12 1.2c3.2 0 6.21 1.25 8.46 3.47 2.22 2.22 3.45 5.14 3.45 8.28 0 6.1-4.84 10.83-10.9 10.83zm5.26-7.18c-.29-.15-1.72-.84-1.99-.93-.27-.1-.47-.15-.67.15-.2.29-.78.93-.96 1.12-.18.2-.36.22-.65.07-.29-.15-1.22-.45-2.32-1.44-.86-.76-1.44-1.7-1.61-1.99-.17-.29-.02-.45.12-.6.12-.12.29-.31.43-.46.14-.15.19-.25.29-.42.1-.17.05-.32-.02-.47-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51-.18-.01-.38-.01-.58-.01-.2 0-.52.07-.79.32-.27.25-1.02 1-1.02 2.42s1.05 2.8 1.19 2.99c.14.19 2.06 3.15 5 4.42.7.3 1.25.48 1.68.61.7.21 1.33.18 1.83.11.56-.08 1.72-.7 1.97-1.38.25-.67.25-1.25.18-1.38-.08-.13-.27-.2-.57-.35z" fill="#fff"/>
     </svg>
@@ -1983,7 +2082,12 @@
     }
 
     function saveUsers(users) {
-      localStorage.setItem(USERS_KEY, JSON.stringify(users));
+      try {
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+      } catch (error) {
+        console.error("Kon users niet opslaan in localStorage:", error);
+        throw error;
+      }
     }
 
     function getProfile(email) {
@@ -2287,15 +2391,51 @@
       setTimeout(() => toast.classList.remove("visible"), 4200);
     }
 
-    function handleAvatarChange(event) {
+    async function handleAvatarChange(event) {
       const file = event.target.files[0];
       if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        currentAvatarData = reader.result;
+      try {
+        const dataURL = await readFileAsDataURL(file);
+        const resized = await resizeImageDataURL(dataURL, 300, 300, 0.75);
+        currentAvatarData = resized;
         document.getElementById("avatarPreview").src = currentAvatarData;
-      };
-      reader.readAsDataURL(file);
+      } catch (error) {
+        console.error("Kon profielfoto niet verwerken:", error);
+      }
+    }
+
+    function readFileAsDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function resizeImageDataURL(dataURL, maxWidth = 300, maxHeight = 300, quality = 0.75) {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => {
+          const canvas = document.createElement("canvas");
+          let width = image.width;
+          let height = image.height;
+
+          if (width > maxWidth || height > maxHeight) {
+            const ratio = Math.min(maxWidth / width, maxHeight / height);
+            width = Math.round(width * ratio);
+            height = Math.round(height * ratio);
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(image, 0, 0, width, height);
+          resolve(canvas.toDataURL("image/jpeg", quality));
+        };
+        image.onerror = reject;
+        image.src = dataURL;
+      });
     }
 
     async function handleProfileSave(event) {
@@ -2313,8 +2453,21 @@
       const department = document.getElementById("profileDepartment").value.trim();
       const location = document.getElementById("profileLocation").value.trim();
       const website = document.getElementById("profileWebsite").value.trim();
+      const profileAvatarInput = document.getElementById("avatarInput");
       const message = document.getElementById("profileMessage");
       message.textContent = "";
+
+      if (profileAvatarInput && profileAvatarInput.files.length > 0) {
+        try {
+          const dataURL = await readFileAsDataURL(profileAvatarInput.files[0]);
+          currentAvatarData = await resizeImageDataURL(dataURL, 300, 300, 0.75);
+        } catch (error) {
+          console.error("Kon avatar niet laden:", error);
+          message.style.color = "#e11d48";
+          message.textContent = "Kon profielfoto niet verwerken. Kies een kleinere afbeelding.";
+          return;
+        }
+      }
 
       const users = getUsers();
       const profile = getProfile(currentUser);
@@ -2328,7 +2481,14 @@
       profile.website = website;
       profile.avatar = currentAvatarData || profile.avatar || "";
       users[currentUser] = profile;
-      saveUsers(users);
+      try {
+        saveUsers(users);
+      } catch (error) {
+        console.error("Kon gebruiker niet opslaan:", error);
+        message.style.color = "#e11d48";
+        message.textContent = "Er is een fout opgetreden bij het opslaan. Kies een kleinere profielfoto.";
+        return;
+      }
       currentProfile = profile;
 
       message.style.color = "#16a34a";
