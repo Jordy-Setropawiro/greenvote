@@ -1728,19 +1728,28 @@
 
       <div class="proof-grid">
         <div class="proof-card">
-          <h3>Eén stem per account</h3>
-          <p>De stemfunctie blokkeert een tweede stem voor hetzelfde account via lokale stemstatus.</p>
-          <p class="proof-note">Test: ingelogd met een account, één keer gestemd en opnieuw stemmen geblokkeerd.</p>
+          <div class="case-label">Een stem per account</div>
+          <p class="section-subtitle">
+          De stemfunctie blokkeert een tweede stem voor hetzelfde account via lokale stemstatus.
+        </p>
+      
+          <p class="case-metric">Test: ingelogd met een account, één keer gestemd en opnieuw stemmen geblokkeerd.</p>
         </div>
         <div class="proof-card">
-          <h3>Invoercontrole</h3>
-          <p>Registratie en login controleren op lege velden, geldig e-mailadres en minimaal 8 tekens wachtwoord.</p>
-          <p class="proof-note">Test: foutmelding getoond bij leeg e-mailveld, verkeerd wachtwoord en te korte wachtwoordzin.</p>
+          <div class="case-label">Invoer controle</div>
+          <p class="section-subtitle">
+          Registratie en login controleren op lege velden, geldig e-mailadres en minimaal 8 tekens wachtwoord.
+        </p>
+         
+          <p class="case-metric">Test: foutmelding getoond bij leeg e-mailveld, verkeerd wachtwoord en te korte wachtwoordzin.</p>
         </div>
         <div class="proof-card">
-          <h3>Geen gevoelige data</h3>
-          <p>Wachtwoord wordt niet in plain text opgeslagen; alleen een hash is in localStorage aanwezig.</p>
-          <p class="proof-note">Test: inspectie van localStorage toont geen onversleutelde wachtwoorden.</p>
+          <div class="case-label">Geen gevoelige data</div>
+          <p class="section-subtitle">
+          Wachtwoord wordt niet in plain text opgeslagen; alleen een hash is in localStorage aanwezig
+        </p>
+      </p>
+        <p class="case-metric">Test: inspectie van localStorage toont geen onversleutelde wachtwoorden.</p>
         </div>
       </div>
     </div>
